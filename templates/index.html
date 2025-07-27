@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>未来の私からのメッセージ</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="sparkles">
+            <span class="sparkle">✨</span>
+            <span class="sparkle">🌟</span>
+            <span class="sparkle">💫</span>
+        </div>
+        
+        <header>
+            <h1 class="title">
+                <span class="title-icon">💌</span>
+                未来の私からのメッセージ
+            </h1>
+            <p class="subtitle">1年後のあなたから、今日のあなたへ</p>
+        </header>
+
+        <main>
+            <div class="message-card">
+                <div class="card-header">
+                    <span class="date-label">{{ today }}</span>
+                    <span class="from-label">From: 1年後のあなたより 💝</span>
+                </div>
+                
+                <div class="message-content">
+                    <p class="message-text">{{ message }}</p>
+                </div>
+                
+                <div class="card-footer">
+                    <div class="decoration">
+                        <span>🌸</span>
+                        <span>🎀</span>
+                        <span>🌸</span>
+                    </div>
+                    <p class="encouragement">今日も素敵な一日になりますように！</p>
+                </div>
+            </div>
+
+            <button class="refresh-btn" onclick="location.reload()">
+                <span class="btn-icon">🔄</span>
+                別のメッセージを見る
+            </button>
+        </main>
+
+        <footer>
+            <p class="footer-text">毎日新しいメッセージが届くよ 💕</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
