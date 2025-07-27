@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from datetime import datetime
 import random
 from messages import messages
@@ -20,10 +20,19 @@ def get_daily_message():
     
     return message
 
+def get_random_message():
+    # 完全にランダムなメッセージを選択
+    return random.choice(messages)
+
 @app.route('/')
 def index():
     today = datetime.now().strftime('%Y年%m月%d日')
-    message = get_daily_message()
+    
+    # クエリパラメータでランダム表示かどうかを判定
+    if request.args.get('random') == 'true':
+        message = get_random_message()
+    else:
+        message = get_daily_message()
     
     return render_template('index.html', today=today, message=message)
 
