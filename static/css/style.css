@@ -184,29 +184,47 @@ header {
     font-weight: 500;
 }
 
-.home-button {
+.button-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.action-button {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 10px;
-    background: white;
-    color: #a98cc7;
     padding: 15px 30px;
     border-radius: 30px;
     font-size: 16px;
     font-weight: 700;
     text-decoration: none;
     transition: all 0.3s ease;
+    width: 100%;
+}
+
+.home-button {
+    background: white;
+    color: #a98cc7;
     box-shadow: 0 4px 15px rgba(169, 140, 199, 0.2);
-    margin-bottom: 20px;
 }
 
-.home-button:hover {
+.random-button {
+    background: linear-gradient(135deg, #ff9eb5 0%, #ffc1e3 100%);
+    color: white;
+    box-shadow: 0 4px 15px rgba(255, 158, 181, 0.4);
+}
+
+.action-button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(169, 140, 199, 0.3);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
 
-.home-button:active {
-    transform: scale(0.95);
+.action-button:active {
+    transform: scale(0.98);
 }
 
 .btn-icon {
@@ -256,9 +274,13 @@ footer {
         font-size: 13px;
     }
     
-    .home-button {
-        font-size: 15px;
-        padding: 12px 25px;
+    .button-container {
+        gap: 10px;
+    }
+    
+    .action-button {
+        font-size: 14px;
+        padding: 12px 20px;
     }
     
     .btn-icon {

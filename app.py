@@ -1,6 +1,7 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from datetime import datetime
 import random
+import time
 from messages import messages
 
 app = Flask(__name__)
@@ -16,6 +17,11 @@ def get_daily_message():
     
     return messages[index]
 
+def get_random_message():
+    # 現在時刻をシードにしてランダムメッセージを取得
+    random.seed(int(time.time() * 1000000))
+    return random.choice(messages)
+
 @app.route('/')
 def home():
     return render_template('home.html')
@@ -23,7 +29,12 @@ def home():
 @app.route('/message')
 def message():
     today = datetime.now().strftime('%Y年%m月%d日')
-    message = get_daily_message()
+    
+    # ランダムパラメータがある場合はランダムメッセージを表示
+    if request.args.get('random') == 'true':
+        message = get_random_message()
+    else:
+        message = get_daily_message()
     
     return render_template('index.html', today=today, message=message)
 
