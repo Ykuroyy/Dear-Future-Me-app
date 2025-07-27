@@ -47,14 +47,18 @@ def message():
     if request.args.get('random') == 'true':
         # セッションから前回のメッセージを取得
         last_message = session.get('last_message', '')
-        message = get_random_message(exclude_message=last_message)
+        # タイムスタンプを使って真のランダム性を確保
+        import time
+        random.seed(time.time())
+        new_message = get_random_message(exclude_message=last_message)
         # 新しいメッセージをセッションに保存
-        session['last_message'] = message
+        session['last_message'] = new_message
+        current_message = new_message
     else:
-        message = get_daily_message()
-        session['last_message'] = message
+        current_message = get_daily_message()
+        session['last_message'] = current_message
     
-    return render_template('index.html', today=today, message=message)
+    return render_template('index.html', today=today, message=current_message)
 
 if __name__ == '__main__':
     app.run(debug=False, host='0.0.0.0', port=8080)

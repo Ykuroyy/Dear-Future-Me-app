@@ -44,15 +44,16 @@
                 </div>
             </div>
 
-            <button class="refresh-btn" onclick="window.location.href='/message?random=true'">
-                <span class="btn-icon">🔄</span>
-                別のメッセージを見る
-            </button>
-            
-            <a href="/" class="home-link">
-                <span class="home-icon">🏠</span>
-                ホームに戻る
-            </a>
+            <div class="button-group">
+                <a href="/" class="action-btn home-btn">
+                    <span class="btn-icon">🏠</span>
+                    ホームに戻る
+                </a>
+                <button class="action-btn refresh-btn" onclick="window.location.href='/message?random=true'">
+                    <span class="btn-icon">🔄</span>
+                    別のメッセージ
+                </button>
+            </div>
         </main>
 
         <footer>
