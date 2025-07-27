@@ -14,6 +14,10 @@ body {
     padding: 20px;
     position: relative;
     overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
 }
 
 .container {
@@ -212,6 +216,36 @@ header {
     transform: rotate(180deg);
 }
 
+.refresh-btn:active {
+    transform: scale(0.95);
+}
+
+.home-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 20px;
+    padding: 12px 24px;
+    background: rgba(255, 255, 255, 0.8);
+    color: #a98cc7;
+    text-decoration: none;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.home-link:hover {
+    background: rgba(255, 255, 255, 0.95);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(169, 140, 199, 0.3);
+}
+
+.home-icon {
+    font-size: 18px;
+}
+
 footer {
     text-align: center;
 }
@@ -222,19 +256,49 @@ footer {
 }
 
 @media (max-width: 480px) {
+    body {
+        padding: 15px;
+    }
+    
     .title {
         font-size: 24px;
     }
     
+    .subtitle {
+        font-size: 14px;
+    }
+    
     .message-card {
         padding: 20px;
+        margin-bottom: 20px;
     }
     
     .message-text {
         font-size: 16px;
+        line-height: 1.7;
+    }
+    
+    .message-content {
+        min-height: 120px;
+        padding: 20px;
     }
     
     .card-header {
         justify-content: center;
+        font-size: 13px;
+    }
+    
+    .refresh-btn {
+        font-size: 15px;
+        padding: 14px 25px;
+    }
+    
+    .home-link {
+        font-size: 13px;
+        padding: 10px 20px;
+    }
+    
+    .sparkle {
+        font-size: 20px;
     }
 }

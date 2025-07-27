@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0">
     <title>未来の私からのメッセージ</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700&display=swap" rel="stylesheet">
@@ -44,10 +44,15 @@
                 </div>
             </div>
 
-            <button class="refresh-btn" onclick="window.location.href='/?random=true'">
+            <button class="refresh-btn" onclick="window.location.href='/message?random=true'">
                 <span class="btn-icon">🔄</span>
                 別のメッセージを見る
             </button>
+            
+            <a href="/" class="home-link">
+                <span class="home-icon">🏠</span>
+                ホームに戻る
+            </a>
         </main>
 
         <footer>

@@ -1,9 +1,11 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, session
 from datetime import datetime
 import random
+import secrets
 from messages import messages
 
 app = Flask(__name__)
+app.secret_key = secrets.token_hex(16)
 
 def get_daily_message():
     # 日付に基づいて一日中同じメッセージを表示
@@ -20,19 +22,29 @@ def get_daily_message():
     
     return message
 
-def get_random_message():
-    # 完全にランダムなメッセージを選択
-    return random.choice(messages)
+def get_random_message(exclude_message=None):
+    # 完全にランダムなメッセージを選択（同じメッセージを除外）
+    available_messages = [msg for msg in messages if msg != exclude_message]
+    return random.choice(available_messages)
 
 @app.route('/')
-def index():
+def home():
+    return render_template('home.html')
+
+@app.route('/message')
+def message():
     today = datetime.now().strftime('%Y年%m月%d日')
     
-    # クエリパラメータでランダム表示かどうかを判定
+    # ランダムモードかどうかを判定
     if request.args.get('random') == 'true':
-        message = get_random_message()
+        # セッションから前回のメッセージを取得
+        last_message = session.get('last_message', '')
+        message = get_random_message(exclude_message=last_message)
+        # 新しいメッセージをセッションに保存
+        session['last_message'] = message
     else:
         message = get_daily_message()
+        session['last_message'] = message
     
     return render_template('index.html', today=today, message=message)
 
