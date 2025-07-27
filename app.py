@@ -15,16 +15,24 @@ def get_daily_message():
     
     # 年と日付を組み合わせてシード値を作成
     seed = year * 1000 + day_of_year
+    
+    # 一時的にランダムステートを保存
+    state = random.getstate()
     random.seed(seed)
     
     # メッセージをランダムに選択
     message = random.choice(messages)
+    
+    # ランダムステートを復元
+    random.setstate(state)
     
     return message
 
 def get_random_message(exclude_message=None):
     # 完全にランダムなメッセージを選択（同じメッセージを除外）
     available_messages = [msg for msg in messages if msg != exclude_message]
+    if len(available_messages) == 0:  # すべてのメッセージを見た場合
+        available_messages = messages
     return random.choice(available_messages)
 
 @app.route('/')
